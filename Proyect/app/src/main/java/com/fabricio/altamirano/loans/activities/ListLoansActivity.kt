@@ -2,6 +2,7 @@ package com.fabricio.altamirano.loans.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.ListView
 import com.fabricio.altamirano.loans.R
 import com.fabricio.altamirano.loans.adapters.AdapterLoan
@@ -22,5 +23,12 @@ class ListLoansActivity : AppCompatActivity() {
 
         adapter = AdapterLoan(this, dataSample.loadData())
         lv_loans.adapter = adapter
+
+        lv_loans.setOnItemClickListener { adapterView, view, i, l ->
+
+            var item = adapter.getItem(i)
+            var array= item.loadBrakingDownLoan();
+
+        }
     }
 }

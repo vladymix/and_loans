@@ -6,6 +6,7 @@ import com.fabricio.altamirano.loans.R
  * Created by fabricio Altamirano on 11/01/2019.
  */
 class DataSample{
+
     fun loadData():ArrayList<Loan>{
         val array = ArrayList<Loan>()
 
@@ -17,6 +18,7 @@ class DataSample{
         loan.importe = 5675.44
         loan.amortizado = 1196.28
         loan.id_image = R.drawable.ic_consumer
+        loan.interes = 8.8766
 
         array.add(loan)
 

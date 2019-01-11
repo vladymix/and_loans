@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
+
         android:foreground="@drawable/background_riple"
         card_view:cardCornerRadius="4dp">
         <LinearLayout

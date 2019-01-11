@@ -32,7 +32,7 @@ public class AdapterLoan(context: Context, source :ArrayList<Loan>) : BaseAdapte
         return sList.size
     }
 
-    override fun getItem(position: Int): Any {
+    override fun getItem(position: Int): Loan {
         return sList[position]
     }
 
