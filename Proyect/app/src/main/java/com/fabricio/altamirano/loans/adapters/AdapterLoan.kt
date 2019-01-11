@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.fabricio.altamirano.loans.R
@@ -71,8 +72,7 @@ private class ViewHolder(row: View?) {
         tx_n_cuotas.text = loan.n_cuotas.toString()
         this.tx_amortizado.text = loan.amortizado.toString()
         this.tx_pendiente.text = loan.pendiente.toString()
-
-
+        this.iv_logo.setImageResource(loan.id_image)
 
         // importe = 100%
         // pendiente = x
@@ -95,6 +95,8 @@ private class ViewHolder(row: View?) {
     public val tx_amortizado: TextView
     public val tx_pendiente: TextView
     public val progress_bar:ProgressBar
+    public val iv_logo: ImageView
+
 
     init {
         this.tx_tipo = row?.findViewById(R.id.tx_tipo) as TextView
@@ -105,5 +107,6 @@ private class ViewHolder(row: View?) {
         this.tx_amortizado =row?.findViewById(R.id.tx_amortizado) as TextView
         this.tx_pendiente =row?.findViewById(R.id.tx_pendiente) as TextView
         this.progress_bar = row?.findViewById(R.id.progress_bar)
+        this.iv_logo = row?.findViewById(R.id.iv_logo)
     }
 }

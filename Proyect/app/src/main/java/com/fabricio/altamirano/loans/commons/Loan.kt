@@ -13,5 +13,6 @@ class Loan {
 
     var amortizado: Double = 0.0
     var pendiente : Double =0.0
+    var id_image: Int=0
 
 }
