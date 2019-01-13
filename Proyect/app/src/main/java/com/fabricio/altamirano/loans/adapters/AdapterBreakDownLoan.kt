@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.fabricio.altamirano.loans.R
 import com.fabricio.altamirano.loans.commons.BreakDownLoan
+import com.fabricio.altamirano.loans.commons.DataSample
 
 /**
  * Created by fabricio Altamirano on 11/01/2019.
@@ -73,9 +74,9 @@ private class ViewHolderBreak(row: View?) {
 
     fun loadData(breakDown: BreakDownLoan) {
         this.tv_n_cuota.text = breakDown.n_cuota.toString()
-        this.tv_cuota.text = breakDown.cuota.toString()
-        this.tv_capital_amortizado.text = breakDown.cuota_amortizacion.toString()
-        this.tv_capital_pendiente.text = breakDown.pendiente.toString()
-        this.tv_intereses.text = breakDown.intereses.toString()
+        this.tv_cuota.text = DataSample.geAsCoin(breakDown.cuota)
+        this.tv_capital_amortizado.text = DataSample.geAsCoin(breakDown.cuota_amortizacion)
+        this.tv_capital_pendiente.text = DataSample.geAsCoin(breakDown.pendiente)
+        this.tv_intereses.text = DataSample.geAsCoin(breakDown.intereses)
     }
 }

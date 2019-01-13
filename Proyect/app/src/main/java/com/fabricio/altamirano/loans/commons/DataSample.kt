@@ -9,7 +9,15 @@ class DataSample{
 
     companion object {
         var details = Loan()
-        fun getMoreInfo():String { return "This is more fun" }
+        fun geAsCoin(value:Double, symbol:String):String {
+
+            var str = String.format("%.2f", value)
+            str += symbol
+            return str
+        }
+        fun geAsCoin(value:Double):String {
+            return geAsCoin(value,"€")
+        }
     }
 
 

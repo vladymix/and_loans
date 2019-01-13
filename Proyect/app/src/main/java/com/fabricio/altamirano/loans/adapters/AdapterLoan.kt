@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.fabricio.altamirano.loans.R
+import com.fabricio.altamirano.loans.commons.DataSample
 import com.fabricio.altamirano.loans.commons.Loan
 import java.util.*
 
@@ -66,11 +67,11 @@ private class ViewHolder(row: View?) {
 
         tx_tipo.text = loan.tipo
         tx_entity.text = loan.entity
-        tx_importe.text = loan.importe.toString()
-        tx_cuota.text =  loan.cuota.toString()
+        tx_importe.text = DataSample.geAsCoin(loan.importe)
+        tx_cuota.text =  DataSample.geAsCoin(loan.cuota)
         tx_n_cuotas.text = loan.n_cuotas.toString()
-        this.tx_amortizado.text = loan.amortizado.toString()
-        this.tx_pendiente.text = loan.pendiente.toString()
+        this.tx_amortizado.text = DataSample.geAsCoin(loan.amortizado)
+        this.tx_pendiente.text = DataSample.geAsCoin(loan.pendiente)
         this.iv_logo.setImageResource(loan.id_image)
 
         // importe = 100%
