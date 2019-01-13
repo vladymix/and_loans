@@ -1,8 +1,6 @@
 package com.fabricio.altamirano.loans.adapters
 
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +10,12 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.fabricio.altamirano.loans.R
 import com.fabricio.altamirano.loans.commons.Loan
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by fabricio Altamirano on 11/01/2019.
  */
-public class AdapterLoan(context: Context, source :ArrayList<Loan>) : BaseAdapter(){
+class AdapterLoan(context: Context, source :ArrayList<Loan>) : BaseAdapter(){
 
     private var sList :ArrayList<Loan>
 
@@ -51,7 +49,8 @@ public class AdapterLoan(context: Context, source :ArrayList<Loan>) : BaseAdapte
             view = convertView
             vh = view.tag as ViewHolder
         }
-        var loan =sList[position];
+
+        val loan =sList[position];
 
         vh.loadData(loan);
 
@@ -79,7 +78,6 @@ private class ViewHolder(row: View?) {
         // 200 = 100%
         // 50 = x%
         // x = 100% *50 / 200
-
         // pendiente =  importe - amortizado
         this.progress_bar.progress = (100 * loan.amortizado / loan.importe).toInt()
 
@@ -96,7 +94,6 @@ private class ViewHolder(row: View?) {
     public val tx_pendiente: TextView
     public val progress_bar:ProgressBar
     public val iv_logo: ImageView
-
 
     init {
         this.tx_tipo = row?.findViewById(R.id.tx_tipo) as TextView

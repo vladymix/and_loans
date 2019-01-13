@@ -18,6 +18,16 @@
         </activity>
         <activity android:name=".activities.ListLoansActivity">
         </activity>
+        <activity
+            android:name=".DetailsActivity"
+            android:label="@string/title_activity_details"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:label="@string/title_amortizacion"
+            android:name=".activities.BreakDownDetailsActivity">
+        </activity>
     </application>
 
 </manifest>

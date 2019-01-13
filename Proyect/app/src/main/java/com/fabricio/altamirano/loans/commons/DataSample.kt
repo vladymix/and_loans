@@ -7,6 +7,12 @@ import com.fabricio.altamirano.loans.R
  */
 class DataSample{
 
+    companion object {
+        var details = Loan()
+        fun getMoreInfo():String { return "This is more fun" }
+    }
+
+
     fun loadData():ArrayList<Loan>{
         val array = ArrayList<Loan>()
 
@@ -30,6 +36,7 @@ class DataSample{
         loan.importe = 4600.0
         loan.amortizado = 1940.76
         loan.id_image = R.drawable.ic_zaplo
+        loan.interes = 9.63
 
         array.add(loan)
 
@@ -41,6 +48,7 @@ class DataSample{
         loan.importe = 5045.22
         loan.amortizado = 197.76
         loan.id_image = R.drawable.ic_sabadell
+        loan.interes = 8.95
 
         array.add(loan)
 
@@ -52,7 +60,7 @@ class DataSample{
         loan.importe = 24375.98
         loan.amortizado = 2125.44
         loan.id_image = R.drawable.ic_cetelem
-
+        loan.interes = 8.99
         array.add(loan)
 
         return array

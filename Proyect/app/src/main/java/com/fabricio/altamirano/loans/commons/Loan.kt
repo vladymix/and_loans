@@ -4,6 +4,7 @@ package com.fabricio.altamirano.loans.commons
  * Created by fabricio Altamirano on 11/01/2019.
  */
 class Loan {
+
     lateinit var entity :String
     lateinit var tipo :String
     var importe: Double = 0.0
@@ -18,7 +19,6 @@ class Loan {
     var interes: Double = 0.0 // 100%
     var interes_mes :Double =0.0 // 100%
 
-
     fun loadBrakingDownLoan():ArrayList<BreakDownLoan>{
         var array = ArrayList<BreakDownLoan>()
         var i=0;
@@ -29,17 +29,17 @@ class Loan {
 
         this.cuota = this.importe * this.interes_mes/((1-Math.pow((1+this.interes_mes/100),this.n_cuotas*(-1.0)))*100)
 
-        var pendiente = this.importe
+        var resto = this.importe
 
         for( i in 1..this.n_cuotas){
 
             var breakDown=BreakDownLoan()
             breakDown.n_cuota = i;
             breakDown.cuota = this.cuota
-            breakDown.intereses = pendiente * (this.interes_mes/100)
+            breakDown.intereses = resto * (this.interes_mes/100)
             breakDown.cuota_amortizacion = breakDown.cuota - breakDown.intereses
-            breakDown.pendiente = pendiente - breakDown.cuota_amortizacion;
-            pendiente = breakDown.pendiente
+            breakDown.pendiente = resto - breakDown.cuota_amortizacion;
+            resto = breakDown.pendiente
             array.add(breakDown)
         }
 
