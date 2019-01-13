@@ -13,14 +13,10 @@ import com.fabricio.altamirano.loans.commons.DataSample
 /**
  * Created by fabricio Altamirano on 11/01/2019.
  */
-class AdapterBreakDownLoan(context: Context, source:ArrayList<BreakDownLoan>) : BaseAdapter() {
-     var source:ArrayList<BreakDownLoan>
-    private val mInflator: LayoutInflater
+class AdapterBreakDownLoan(context: Context, list: ArrayList<BreakDownLoan>) : BaseAdapter() {
 
-    init{
-        this.source = source;
-        this.mInflator = LayoutInflater.from(context)
-    }
+    var source: ArrayList<BreakDownLoan> = list
+    val mInflator: LayoutInflater = LayoutInflater.from(context)
 
     override fun getView(p0: Int, convertView: View?, parent: ViewGroup?): View? {
         val view: View?
@@ -34,23 +30,21 @@ class AdapterBreakDownLoan(context: Context, source:ArrayList<BreakDownLoan>) : 
             vh = view.tag as ViewHolderBreak
         }
 
-        val loan =source[p0];
-
-        vh.loadData(loan);
+        vh.loadData(source[p0])
 
         return view
     }
 
     override fun getItem(p0: Int): BreakDownLoan {
-       return this.source[p0]
+        return this.source[p0]
     }
 
     override fun getItemId(p0: Int): Long {
-        return  p0.toLong();
+        return p0.toLong();
     }
 
     override fun getCount(): Int {
-      return source.size
+        return source.size
     }
 }
 
@@ -63,7 +57,7 @@ private class ViewHolderBreak(row: View?) {
     private var tv_capital_pendiente: TextView
     private var tv_intereses: TextView
 
-    init{
+    init {
         tv_n_cuota = row?.findViewById(R.id.tv_n_cuota) as TextView
         tv_fecha = row?.findViewById(R.id.tv_fecha) as TextView
         tv_cuota = row?.findViewById(R.id.tv_cuota) as TextView

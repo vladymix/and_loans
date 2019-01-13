@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.fabricio.altamirano.loans.R
 import com.fabricio.altamirano.loans.adapters.AdapterLoan
 import com.fabricio.altamirano.loans.commons.DataSample
+import com.fabricio.altamirano.loans.commons.Loan
 import kotlinx.android.synthetic.main.activity_list_loans.*
 
 class ListLoansActivity : AppCompatActivity() {
@@ -16,22 +17,20 @@ class ListLoansActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_loans)
 
-        lv_loans.emptyView = ly_empty
+        val dataSample = DataSample()
 
-        var dataSample = DataSample()
+        this.adapter = AdapterLoan(this, dataSample.loadData())
 
-        adapter = AdapterLoan(this, dataSample.loadData())
-        lv_loans.adapter = adapter
+        this.lv_loans.emptyView = ly_empty
 
-        lv_loans.setOnItemClickListener { adapterView, view, i, l ->
+        this.lv_loans.adapter = adapter
 
-            var item = adapter.getItem(i)
-            var array = item.loadBrakingDownLoan();
+        this.lv_loans.setOnItemClickListener { adapterView, view, i, l -> navigateToBreakDownDetails(adapter.getItem(i))}
+    }
 
-            DataSample.details = item
-            val intent = Intent(this, BreakDownDetailsActivity::class.java)
-            startActivity(intent)
-
-        }
+    fun navigateToBreakDownDetails(selected:Loan){
+        DataSample.details = selected
+        val intent = Intent(this, BreakDownDetailsActivity::class.java)
+        startActivity(intent)
     }
 }
