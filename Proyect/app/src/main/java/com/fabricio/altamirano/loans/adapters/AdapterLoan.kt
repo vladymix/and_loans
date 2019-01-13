@@ -86,7 +86,7 @@ private class ViewHolder(row: View?) {
         this.tx_entity.text = loan.entity
         this.tx_importe.text = DataSample.geAsCoin(loan.importe)
         this.tx_cuota.text =  DataSample.geAsCoin(loan.cuota)
-        this.tx_n_cuotas.text = loan.n_cuotas.toString()
+        this.tx_n_cuotas.text = loan.n_cuotas_pagadas.toString() +"/"+loan.n_cuotas.toString()
         this.tx_amortizado.text = DataSample.geAsCoin(loan.amortizado)
         this.tx_pendiente.text = DataSample.geAsCoin(loan.pendiente)
         this.iv_logo.setImageResource(loan.id_image)

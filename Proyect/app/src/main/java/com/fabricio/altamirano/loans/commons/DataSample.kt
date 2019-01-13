@@ -1,6 +1,7 @@
 package com.fabricio.altamirano.loans.commons
 
 import com.fabricio.altamirano.loans.R
+import java.util.*
 
 /**
  * Created by fabricio Altamirano on 11/01/2019.
@@ -33,6 +34,8 @@ class DataSample{
         loan.amortizado = 1196.28
         loan.id_image = R.drawable.ic_consumer
         loan.interes = 8.8766
+        loan.date_start = getDate(1,10,2018)
+        updateData(loan)
 
         array.add(loan)
 
@@ -45,7 +48,8 @@ class DataSample{
         loan.amortizado = 1940.76
         loan.id_image = R.drawable.ic_zaplo
         loan.interes = 9.63
-
+        loan.date_start = getDate(1,5,2018)
+        updateData(loan)
         array.add(loan)
 
         loan = Loan()
@@ -57,7 +61,8 @@ class DataSample{
         loan.amortizado = 197.76
         loan.id_image = R.drawable.ic_sabadell
         loan.interes = 8.95
-
+        loan.date_start = getDate(1,1,2019)
+        updateData(loan)
         array.add(loan)
 
         loan = Loan()
@@ -69,8 +74,59 @@ class DataSample{
         loan.amortizado = 2125.44
         loan.id_image = R.drawable.ic_cetelem
         loan.interes = 8.99
+        loan.date_start = getDate(5,8,2018)
+        updateData(loan)
         array.add(loan)
 
         return array
     }
+
+    fun updateData(loan:Loan){
+        val dateStart = loan.date_start
+        val currentData = Calendar.getInstance().time
+        var numerMonths = numberMonths(dateStart, currentData)
+        val array = loan.loadBrakingDownLoan()
+        loan.n_cuotas_pagadas = numerMonths
+        var amortizado:Double=0.0
+        for(i in 1..numerMonths){
+            val item = array[i]
+            amortizado += item.cuota_amortizacion
+        }
+        loan.amortizado = amortizado
+    }
+
+    fun numberMonths(dateStart:Date, dateEnd:Date):Int{
+
+        val calendarStart = Calendar.getInstance()
+        calendarStart.time = dateStart
+        val diaStart =  calendarStart.get(Calendar.DAY_OF_MONTH)
+        val mesStart =  calendarStart.get(Calendar.MONTH)
+        val yearStart =  calendarStart.get(Calendar.YEAR)
+
+        val calendarEnd =Calendar.getInstance()
+        calendarEnd.time = dateEnd
+        val diaEnd =  calendarEnd.get(Calendar.DAY_OF_MONTH)
+        val mesEnd =  calendarEnd.get(Calendar.MONTH)
+        val yearEnd =  calendarEnd.get(Calendar.YEAR)
+
+        var include =0
+
+        if(diaStart <= diaEnd){
+            include = 1
+        }
+        // 1 - 10 = -9
+        // 2019 - 2018 = 1 * 12
+       // 12 -9 = 3
+        // 10 - 4
+        return  (mesEnd+1) - (mesStart+1) + (12 * (yearEnd - yearStart)) + include
+    }
+
+    fun getDate(dia:Int, mes:Int, year:Int):Date{
+        val calendar =Calendar.getInstance()
+        calendar.set(Calendar.YEAR,year)
+        calendar.set(Calendar.MONTH,mes-1)
+        calendar.set(Calendar.DAY_OF_MONTH, dia)
+        return  calendar.time
+    }
+
 }
