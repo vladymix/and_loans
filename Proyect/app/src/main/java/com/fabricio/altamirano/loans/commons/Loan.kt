@@ -23,6 +23,9 @@ class Loan {
     fun loadBrakingDownLoan(): ArrayList<BreakDownLoan> {
 
         val array = ArrayList<BreakDownLoan>()
+        val dateStart = this.date_start
+        val cl = Calendar.getInstance()
+        cl.time = dateStart;
 
         this.interes_mes = this.interes / 12
 
@@ -31,9 +34,12 @@ class Loan {
         var resto = this.importe
 
         for (i in 1..this.n_cuotas) {
-
             val breakDown = BreakDownLoan()
+            if(i!=1){
+                cl.add(Calendar.MONTH,1)
+            }
             breakDown.n_cuota = i;
+            breakDown.dateLoan= cl.time
             breakDown.cuota = this.cuota
             breakDown.intereses = resto * (this.interes_mes / 100)
             breakDown.cuota_amortizacion = breakDown.cuota - breakDown.intereses

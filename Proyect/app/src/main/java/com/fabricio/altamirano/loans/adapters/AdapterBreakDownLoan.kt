@@ -72,5 +72,6 @@ private class ViewHolderBreak(row: View?) {
         this.tv_capital_amortizado.text = DataSample.geAsCoin(breakDown.cuota_amortizacion)
         this.tv_capital_pendiente.text = DataSample.geAsCoin(breakDown.pendiente)
         this.tv_intereses.text = DataSample.geAsCoin(breakDown.intereses)
+        this.tv_fecha.text = DataSample.getDate(breakDown.dateLoan)
     }
 }

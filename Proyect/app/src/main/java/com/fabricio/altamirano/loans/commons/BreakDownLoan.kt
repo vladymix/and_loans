@@ -1,5 +1,7 @@
 package com.fabricio.altamirano.loans.commons
 
+import java.util.*
+
 /**
  * Created by fabricio Altamirano on 11/01/2019.
  */
@@ -11,4 +13,5 @@ class BreakDownLoan {
     var amortizacion : Double = 0.0
     var pendiente : Double =0.0
     var cuota_amortizacion: Double =0.0
+    lateinit var dateLoan: Date
 }

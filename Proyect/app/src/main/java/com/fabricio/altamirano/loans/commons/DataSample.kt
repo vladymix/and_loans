@@ -1,7 +1,10 @@
 package com.fabricio.altamirano.loans.commons
 
+import android.text.format.DateFormat
+import android.util.Log
 import com.fabricio.altamirano.loans.R
 import java.util.*
+import java.util.logging.SimpleFormatter
 
 /**
  * Created by fabricio Altamirano on 11/01/2019.
@@ -18,6 +21,10 @@ class DataSample{
         }
         fun geAsCoin(value:Double):String {
             return geAsCoin(value,"€")
+        }
+
+        fun getDate(dateLoan: Date): String {
+          return  DateFormat.format("dd/MM/yyyy", dateLoan).toString()
         }
     }
 
@@ -85,10 +92,13 @@ class DataSample{
         val dateStart = loan.date_start
         val currentData = Calendar.getInstance().time
         var numerMonths = numberMonths(dateStart, currentData)
+
+        Log.i("DataSample meses",numerMonths.toString() )
+
         val array = loan.loadBrakingDownLoan()
         loan.n_cuotas_pagadas = numerMonths
         var amortizado:Double=0.0
-        for(i in 1..numerMonths){
+        for(i in 0..numerMonths-1){
             val item = array[i]
             amortizado += item.cuota_amortizacion
         }
