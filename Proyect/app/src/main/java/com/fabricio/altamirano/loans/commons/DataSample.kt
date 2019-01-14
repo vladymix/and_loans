@@ -95,8 +95,10 @@ class DataSample{
 
         Log.i("DataSample meses",numerMonths.toString() )
 
-        val array = loan.loadBrakingDownLoan()
+        val array = loadBrakingDownLoan(loan)
+        loan.listBreakDownLoan = array
         loan.n_cuotas_pagadas = numerMonths
+
         var amortizado:Double=0.0
         for(i in 0..numerMonths-1){
             val item = array[i]
@@ -137,6 +139,36 @@ class DataSample{
         calendar.set(Calendar.MONTH,mes-1)
         calendar.set(Calendar.DAY_OF_MONTH, dia)
         return  calendar.time
+    }
+
+    fun loadBrakingDownLoan(loan: Loan): ArrayList<BreakDownLoan>{
+        val array = ArrayList<BreakDownLoan>()
+        val dateStart = loan.date_start
+        val cl = Calendar.getInstance()
+        cl.time = dateStart;
+
+        loan.interes_mes = loan.interes / 12
+
+        loan.cuota = loan.importe * loan.interes_mes / ((1 - Math.pow((1 + loan.interes_mes / 100), loan.n_cuotas * (-1.0))) * 100)
+
+        var resto = loan.importe
+
+        for (i in 1..loan.n_cuotas) {
+            val breakDown = BreakDownLoan()
+            if (i != 1) {
+                cl.add(Calendar.MONTH, 1)
+            }
+            breakDown.n_cuota = i;
+            breakDown.dateLoan = cl.time
+            breakDown.cuota = loan.cuota
+            breakDown.intereses = resto * (loan.interes_mes / 100)
+            breakDown.cuota_amortizacion = breakDown.cuota - breakDown.intereses
+            breakDown.pendiente = resto - breakDown.cuota_amortizacion;
+            resto = breakDown.pendiente
+            array.add(breakDown)
+        }
+
+        return array
     }
 
 }

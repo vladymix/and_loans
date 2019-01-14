@@ -19,6 +19,6 @@ class DetailsActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        listview_breakdown.adapter = AdapterBreakDownLoan(this,DataSample.details.loadBrakingDownLoan())
+        listview_breakdown.adapter = AdapterBreakDownLoan(this,DataSample.details.listBreakDownLoan)
     }
 }

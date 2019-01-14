@@ -13,6 +13,6 @@ class BreakDownDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_break_down_details)
 
-        listview_breakdown.adapter = AdapterBreakDownLoan(this, DataSample.details.loadBrakingDownLoan())
+        listview_breakdown.adapter = AdapterBreakDownLoan(this, DataSample.details.listBreakDownLoan)
     }
 }
