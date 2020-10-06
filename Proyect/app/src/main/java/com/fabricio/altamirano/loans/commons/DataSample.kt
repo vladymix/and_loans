@@ -97,6 +97,12 @@ class DataSample{
 
         val array = loadBrakingDownLoan(loan)
         loan.listBreakDownLoan = array
+
+
+        if(numerMonths>= loan.n_cuotas){
+            numerMonths = loan.n_cuotas
+        }
+
         loan.n_cuotas_pagadas = numerMonths
 
         var amortizado:Double=0.0
